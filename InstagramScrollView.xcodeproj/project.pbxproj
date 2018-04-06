@@ -12,6 +12,7 @@
 		0A37BE4A20770AA7004471E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A37BE4820770AA7004471E9 /* Main.storyboard */; };
 		0A37BE4C20770AA7004471E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A37BE4B20770AA7004471E9 /* Assets.xcassets */; };
 		0A37BE4F20770AA7004471E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A37BE4D20770AA7004471E9 /* LaunchScreen.storyboard */; };
+		83054D9DA440189AE562F8A7 /* Pods_InstagramScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF35A61A9DA861E91122A656 /* Pods_InstagramScrollView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		0A37BE4B20770AA7004471E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A37BE4E20770AA7004471E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A37BE5020770AA7004471E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4351390C8CFB1A9CF0F50F89 /* Pods-InstagramScrollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramScrollView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramScrollView/Pods-InstagramScrollView.debug.xcconfig"; sourceTree = "<group>"; };
+		AF35A61A9DA861E91122A656 /* Pods_InstagramScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBA611C516B9B4BBFE4ECFA8 /* Pods-InstagramScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramScrollView.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramScrollView/Pods-InstagramScrollView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83054D9DA440189AE562F8A7 /* Pods_InstagramScrollView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				0A37BE4320770AA7004471E9 /* InstagramScrollView */,
 				0A37BE4220770AA7004471E9 /* Products */,
+				986EB583966ECECCC47215BC /* Pods */,
+				213871CC87D045775CD1D30A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = InstagramScrollView;
 			sourceTree = "<group>";
 		};
+		213871CC87D045775CD1D30A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF35A61A9DA861E91122A656 /* Pods_InstagramScrollView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		986EB583966ECECCC47215BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4351390C8CFB1A9CF0F50F89 /* Pods-InstagramScrollView.debug.xcconfig */,
+				BBA611C516B9B4BBFE4ECFA8 /* Pods-InstagramScrollView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A37BE5320770AA7004471E9 /* Build configuration list for PBXNativeTarget "InstagramScrollView" */;
 			buildPhases = (
+				EBF84220AF49E219F114AC3C /* [CP] Check Pods Manifest.lock */,
 				0A37BE3D20770AA7004471E9 /* Sources */,
 				0A37BE3E20770AA7004471E9 /* Frameworks */,
 				0A37BE3F20770AA7004471E9 /* Resources */,
+				CC723D4E265DCC388C30EFDE /* [CP] Embed Pods Frameworks */,
+				6AD09CD5A89BB49F2CB4C095 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6AD09CD5A89BB49F2CB4C095 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstagramScrollView/Pods-InstagramScrollView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC723D4E265DCC388C30EFDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InstagramScrollView/Pods-InstagramScrollView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstagramScrollView/Pods-InstagramScrollView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBF84220AF49E219F114AC3C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InstagramScrollView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A37BE3D20770AA7004471E9 /* Sources */ = {
@@ -272,6 +359,7 @@
 		};
 		0A37BE5420770AA7004471E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4351390C8CFB1A9CF0F50F89 /* Pods-InstagramScrollView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +375,7 @@
 		};
 		0A37BE5520770AA7004471E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBA611C516B9B4BBFE4ECFA8 /* Pods-InstagramScrollView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

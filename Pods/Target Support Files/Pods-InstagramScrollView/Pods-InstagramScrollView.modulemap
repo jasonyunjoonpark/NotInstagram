@@ -1,0 +1,6 @@
+framework module Pods_InstagramScrollView {
+  umbrella header "Pods-InstagramScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}
