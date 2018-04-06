@@ -135,13 +135,27 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Not Instagram" id="bqq-BK-hAC"/>
+                                    <navigationItem title="Not Instagram" id="bqq-BK-hAC">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="O7L-uS-5qK">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="qQl-vR-c35" id="5uO-xn-qnO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Share" id="lg1-nL-THK">
+                                            <connections>
+                                                <action selector="shareButtonPressed:" destination="qQl-vR-c35" id="JJM-tR-kHx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="T2o-nv-VYc"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="92D-3k-tar" id="cGt-eJ-9jE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQz-Tb-Gdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
