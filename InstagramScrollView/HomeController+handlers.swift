@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+
 extension HomeController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
@@ -30,15 +30,15 @@ extension HomeController: UIImagePickerControllerDelegate, UINavigationControlle
     //Image Picker Controller 'Choose' Button Pressed
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var selectedImage: UIImage?
+//        var selectedImage: UIImage?
         let myGroup = DispatchGroup()
         
         myGroup.enter()
         //Check if user edited image or not, then store into variable: selectedImage
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImage = editedImage
+            PreviewImage.shared.image = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImage = originalImage
+            PreviewImage.shared.image = originalImage
         }
         picker.dismiss(animated: true, completion: nil)
         myGroup.leave()

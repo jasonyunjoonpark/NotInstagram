@@ -54,7 +54,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="399.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRJ-38-PvO">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRJ-38-PvO">
                                                     <rect key="frame" x="15" y="304" width="345" height="85"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="85" id="3Gk-Hc-CCY"/>
@@ -65,7 +65,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WDr-3e-jJe">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WDr-3e-jJe">
                                                     <rect key="frame" x="0.0" y="38" width="375" height="258"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="258" id="UDs-c8-nlc"/>
@@ -100,6 +100,9 @@
                         <viewLayoutGuide key="safeArea" id="HO8-7d-ZeM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Not Instagram" id="lEO-EQ-5o9"/>
+                    <connections>
+                        <outlet property="tableView" destination="UGp-nL-Iic" id="ogf-Ry-kAe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuC-wH-E8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
