@@ -20,6 +20,10 @@ class DescriptionController: UIViewController {
     
     @IBAction func shareButtonPressed(_ sender: Any) {
         //Save image into Firebase Storage
+        let ref = Database.database().reference()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let postsRef = ref.child("posts")
+        
         let storageRef = Storage.storage().reference()
         let uploadData = UIImagePNGRepresentation(PreviewImage.shared.image!)
         
@@ -30,20 +34,17 @@ class DescriptionController: UIViewController {
                 print(error)
                 return
             }
-            
+            print(metadata)
+            postsRef.child(fileName).updateChildValues(["downloadUrl": metadata?.downloadURL()?.absoluteString])
         })
         
-        //Add image to Firebase Live Database
-        let ref = Database.database().reference()
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
+
         //Update user node
         let usersRef = ref.child("users").child(uid)
         let timestamp = NSDate().timeIntervalSince1970
         usersRef.child("posts").child(fileName).updateChildValues(["timestamp": timestamp])
 
         //Update posts node
-        let postsRef = ref.child("posts")
         postsRef.child(fileName).updateChildValues(["timestamp": timestamp, "description": ""])
         
         
