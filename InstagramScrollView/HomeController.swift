@@ -40,7 +40,7 @@ class HomeController: UIViewController {
         
         //Firebase Live Observer
         let ref = Database.database().reference()
-        ref.observe(.childAdded) { (snapshot) in
+        ref.child("posts").observe(.childAdded) { (snapshot) in
 
         }
         

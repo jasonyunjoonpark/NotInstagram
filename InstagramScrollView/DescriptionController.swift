@@ -19,34 +19,33 @@ class DescriptionController: UIViewController {
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
-        //Save image into Firebase Storage
+        //Main reference
         let ref = Database.database().reference()
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        //Sub node references
+        let usersRef = ref.child("users").child(uid)
         let postsRef = ref.child("posts")
         
+        //Save image into Firebase Storage
         let storageRef = Storage.storage().reference()
         let uploadData = UIImagePNGRepresentation(PreviewImage.shared.image!)
         
         let fileName = UUID().uuidString
+
         
+        //Update nodes
         storageRef.child(fileName).putData(uploadData!, metadata: nil, completion: { (metadata, error) in
             if error != nil {
                 print(error)
                 return
             }
-            print(metadata)
-            postsRef.child(fileName).updateChildValues(["downloadUrl": metadata?.downloadURL()?.absoluteString])
+            //Update posts node
+            let timestamp = NSDate().timeIntervalSince1970
+            postsRef.child(fileName).updateChildValues(["downloadUrl": metadata?.downloadURL()?.absoluteString, "timestamp": timestamp, "description": ""])
+            //Update user node
+            usersRef.child("posts").child(fileName).updateChildValues(["timestamp": timestamp])
         })
-        
-
-        //Update user node
-        let usersRef = ref.child("users").child(uid)
-        let timestamp = NSDate().timeIntervalSince1970
-        usersRef.child("posts").child(fileName).updateChildValues(["timestamp": timestamp])
-
-        //Update posts node
-        postsRef.child(fileName).updateChildValues(["timestamp": timestamp, "description": ""])
-        
         
         dismiss(animated: true, completion: nil)
     }
