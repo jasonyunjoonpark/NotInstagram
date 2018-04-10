@@ -36,7 +36,7 @@ class HomeController: UIViewController {
         let ref = Database.database().reference()
         //Anonymous Firebase Sign-In
         Auth.auth().signInAnonymously() { (user, error) in
-
+            
         }
         
         //Firebase Live Observer
@@ -56,15 +56,25 @@ class HomeController: UIViewController {
                 for post in postsDictionary {
                     
                     if let postDictionary = post.value as? [String : AnyObject] {
-                        print(postDictionary)
-                        print(postDictionary["description"])
-                        print(postDictionary["timestamp"])
                         let post = Post()
-
                         post.description = postDictionary["description"] as? String
                         post.timestamp = postDictionary["timestamp"] as? String
-
-                        self.posts.append(post)
+                        post.downloadUrl = postDictionary["downloadUrl"] as? String
+                        
+                        guard let url = URL(string: post.downloadUrl!) else { return }
+                        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                            if error != nil {
+                                print(error)
+                                return
+                            }
+                           
+                            DispatchQueue.main.async {
+                                post.image = UIImage(data: data!)
+                            }
+                        }) .resume()
+ 
+                        self.posts.insert(post, at: 0)
+                        //self.posts.append(post)
                     }
                     self.tableView.reloadData()
                 }
@@ -96,6 +106,9 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         
         let label = cell?.viewWithTag(2) as? UILabel
         label?.text = posts[indexPath.row].description
+        
+        let ref = Database.database().reference()
+
         
         return cell!
     }
