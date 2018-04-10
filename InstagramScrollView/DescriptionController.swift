@@ -12,6 +12,7 @@ import Firebase
 class DescriptionController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var textField: UITextField!
     
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -19,6 +20,7 @@ class DescriptionController: UIViewController {
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
+        
         //Main reference
         let ref = Database.database().reference()
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -42,7 +44,9 @@ class DescriptionController: UIViewController {
             }
             //Update posts node
             let timestamp = NSDate().timeIntervalSince1970
-            postsRef.child(fileName).updateChildValues(["downloadUrl": metadata?.downloadURL()?.absoluteString, "timestamp": timestamp, "description": ""])
+            //Check for description
+            let descriptionValue = self.textField.text
+            postsRef.child(fileName).updateChildValues(["downloadUrl": metadata?.downloadURL()?.absoluteString, "timestamp": timestamp, "description": descriptionValue])
             //Update user node
             usersRef.child("posts").child(fileName).updateChildValues(["timestamp": timestamp])
         })
@@ -53,7 +57,29 @@ class DescriptionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textField.delegate = self
         imageView.image = PreviewImage.shared.image
         }
     
 }
+
+extension DescriptionController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

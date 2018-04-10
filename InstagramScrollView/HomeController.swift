@@ -33,19 +33,45 @@ class HomeController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        let ref = Database.database().reference()
         //Anonymous Firebase Sign-In
         Auth.auth().signInAnonymously() { (user, error) in
 
         }
         
         //Firebase Live Observer
-        let ref = Database.database().reference()
         ref.child("posts").observe(.childAdded) { (snapshot) in
-
+            self.loadCellData()
         }
         
         
         
+    }
+    
+    fileprivate func loadCellData() {
+        let ref = Database.database().reference()
+        ref.child("posts").queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let postsDictionary = snapshot.value as? [String : AnyObject] {
+                for post in postsDictionary {
+                    
+                    if let postDictionary = post.value as? [String : AnyObject] {
+                        print(postDictionary)
+                        print(postDictionary["description"])
+                        print(postDictionary["timestamp"])
+                        let post = Post()
+
+                        post.description = postDictionary["description"] as? String
+                        post.timestamp = postDictionary["timestamp"] as? String
+
+                        self.posts.append(post)
+                    }
+                    self.tableView.reloadData()
+                }
+                
+            }
+
+        }
     }
 
 
@@ -65,11 +91,11 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         
         
-        let imageView = cell?.viewWithTag(1) as! UIImageView
-        imageView.image = posts[indexPath.row].image
+        let imageView = cell?.viewWithTag(1) as? UIImageView
+        imageView?.image = posts[indexPath.row].image
         
-        let label = cell?.viewWithTag(2) as! UILabel
-        label.text = posts[indexPath.row].description
+        let label = cell?.viewWithTag(2) as? UILabel
+        label?.text = posts[indexPath.row].description
         
         return cell!
     }

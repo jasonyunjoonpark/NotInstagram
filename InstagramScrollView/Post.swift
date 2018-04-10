@@ -11,4 +11,5 @@ import UIKit
 class Post {
     var image: UIImage?
     var description: String?
+    var timestamp: String?
 }
