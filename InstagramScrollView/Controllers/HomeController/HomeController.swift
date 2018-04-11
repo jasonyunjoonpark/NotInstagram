@@ -11,6 +11,7 @@ import Firebase
 
 class HomeController: UIViewController {
     
+    //MARK: Global Variables
     var ref: DatabaseReference?
     var refHandle: UInt!
     var posts = [Post]()
@@ -29,6 +30,7 @@ class HomeController: UIViewController {
 
     }
     
+    //MARK: View Did  Load
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,15 +38,16 @@ class HomeController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+        //Database reference
         if let uid = Auth.auth().currentUser?.uid {
             ref = Database.database().reference()
         }
         
         //Refresh cells live
         fetchDataAndRefreshCells()
-
     }
 
+    //Refresh cells
     fileprivate func fetchDataAndRefreshCells() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -96,7 +99,7 @@ class HomeController: UIViewController {
     }
 }
 
-
+//Extensions
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,11 +127,3 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
-
-
-
-
-
-
-
