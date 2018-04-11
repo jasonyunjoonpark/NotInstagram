@@ -11,16 +11,16 @@ import Firebase
 
 class DescriptionController: UIViewController {
     
+    //MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     
-    
+    //MARK: IBActions
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
-        
         //Main reference
         let ref = Database.database().reference()
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -35,7 +35,6 @@ class DescriptionController: UIViewController {
         
         let fileName = UUID().uuidString
 
-        
         //Update nodes
         storageRef.child(fileName).putData(uploadData!, metadata: nil, completion: { (metadata, error) in
             if error != nil {
@@ -51,23 +50,31 @@ class DescriptionController: UIViewController {
             usersRef.child("posts").child(fileName).updateChildValues(["timestamp": timestamp])
         })
         
-        dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
+    //MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //Delegates
         textField.delegate = self
+        //Setup
         imageView.image = PreviewImage.shared.image
         }
-    
+
 }
 
+//Extensions
 extension DescriptionController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
 }
 
 

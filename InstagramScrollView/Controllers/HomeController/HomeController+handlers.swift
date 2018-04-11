@@ -10,7 +10,6 @@ import UIKit
 
 extension HomeController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
     //Upload Image Button Pressed
     @objc func handleUploadImageButtonPressed() {
         let photoLibrarySelectorVC = UIImagePickerController()
@@ -30,7 +29,6 @@ extension HomeController: UIImagePickerControllerDelegate, UINavigationControlle
     //Image Picker Controller 'Choose' Button Pressed
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-//        var selectedImage: UIImage?
         let myGroup = DispatchGroup()
         
         myGroup.enter()
@@ -46,21 +44,16 @@ extension HomeController: UIImagePickerControllerDelegate, UINavigationControlle
         
         //Store user selected image into Firebase Storage after completion of storing user selected image into variable: selectedImage
         myGroup.notify(queue: .main) {
-        
             //Present Description Controller
             let descriptionVC: DescriptionController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "descriptionController") as UIViewController as! DescriptionController
-            
             self.present(descriptionVC, animated: true, completion: nil)
-            
-            
         }
-
-
-        
-
-
     }
-    
-    
-    
+ 
 }
+
+
+
+
+
+

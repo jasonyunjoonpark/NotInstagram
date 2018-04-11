@@ -39,19 +39,22 @@ class HomeController: UIViewController {
             ref = Database.database().reference()
         }
         
+        //Refresh cells live
         fetchDataAndRefreshCells()
 
     }
 
-    func fetchDataAndRefreshCells() {
+    fileprivate func fetchDataAndRefreshCells() {
         refHandle = ref?.child("posts").observe(.childAdded, with: { (snapshot) in
+            //Cast Firebase data as dictionary
             if let postsDictionary = snapshot.value as? [String : AnyObject] {
+                //Init post object
                 let post = Post()
-                
                 post.description = postsDictionary["description"] as? String
-                post.timestamp = postsDictionary["timestamp"] as? String
+                post.timestamp = postsDictionary["timestamp"] as? Double
                 post.downloadUrl = postsDictionary["downloadUrl"] as? String
                 
+                //Fetch post image
                 guard let url = URL(string: post.downloadUrl!) else { return }
                 URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                     if error != nil {
@@ -60,62 +63,19 @@ class HomeController: UIViewController {
                     }
                     
                     DispatchQueue.main.async {
+                        //Add image to post instance
                         post.image = UIImage(data: data!)
+                        //Add post instance to posts array
                         self.posts.insert(post, at: 0)
+                        //Sort posts array by timestamp
+                        self.posts.sort{ $0.timestamp! > $1.timestamp! }
+                        //Reload cells
                         self.tableView.reloadData()
                     }
-                    
                 }).resume()
-                
-//                self.posts.append(post)
-//
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
             }
-            
         })
     }
-    
-//    fileprivate func loadCellData() {
-//        let ref = Database.database().reference()
-//        ref.child("posts").queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value) { (snapshot) in
-//
-//            if let postsDictionary = snapshot.value as? [String : AnyObject] {
-//                print(postsDictionary)
-////                for post in postsDictionary {
-////                    print(post)
-////                    if let postDictionary = post.value as? [String : AnyObject] {
-////                        let post = Post()
-////                        post.description = postDictionary["description"] as? String
-////                        post.timestamp = postDictionary["timestamp"] as? String
-////                        post.downloadUrl = postDictionary["downloadUrl"] as? String
-//
-////                        guard let url = URL(string: post.downloadUrl!) else { return }
-////                        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-////                            if error != nil {
-////                                print(error)
-////                                return
-////                            }
-////
-////                            DispatchQueue.main.async {
-////                                post.image = UIImage(data: data!)
-////                                self.posts.insert(post, at: 0)
-////                                self.tableView.reloadData()
-////                            }
-////
-////                        }).resume()
-//
-//                   //}
-//
-//                //}
-//                //self.tableView.reloadData()
-//            }
-//
-//        }
-//    }
-
-
 }
 
 extension HomeController: UITableViewDelegate, UITableViewDataSource {

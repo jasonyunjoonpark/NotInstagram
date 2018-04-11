@@ -71,19 +71,83 @@
 		0A37BE4320770AA7004471E9 /* InstagramScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				0A37BE4420770AA7004471E9 /* AppDelegate.swift */,
+				0A7DCE2A207E900500BD184E /* App Delegate */,
+				0A7DCE29207E8FFC00BD184E /* Assets */,
+				0A7DCE23207E8EB300BD184E /* Controllers */,
+				0A7DCE22207E8EA400BD184E /* Models */,
+				0A7DCE27207E8F7100BD184E /* Storyboards */,
+				0A7DCE26207E8F2700BD184E /* Supporting Files */,
+			);
+			path = InstagramScrollView;
+			sourceTree = "<group>";
+		};
+		0A7DCE22207E8EA400BD184E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A8217AF207AF62D00505F40 /* Post.swift */,
+				0A8217AD207AEFB800505F40 /* PreviewImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0A7DCE23207E8EB300BD184E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0A7DCE24207E8ECE00BD184E /* HomeController */,
+				0A7DCE25207E8EFD00BD184E /* DescriptionController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0A7DCE24207E8ECE00BD184E /* HomeController */ = {
+			isa = PBXGroup;
+			children = (
 				0A37BE4620770AA7004471E9 /* HomeController.swift */,
 				0A37BE582077E98D004471E9 /* HomeController+handlers.swift */,
+			);
+			path = HomeController;
+			sourceTree = "<group>";
+		};
+		0A7DCE25207E8EFD00BD184E /* DescriptionController */ = {
+			isa = PBXGroup;
+			children = (
 				0A37BE5A2078155A004471E9 /* DescriptionController.swift */,
-				0A8217AD207AEFB800505F40 /* PreviewImage.swift */,
-				0A8217AF207AF62D00505F40 /* Post.swift */,
-				0A37BE4820770AA7004471E9 /* Main.storyboard */,
-				0A37BE4B20770AA7004471E9 /* Assets.xcassets */,
-				0A37BE4D20770AA7004471E9 /* LaunchScreen.storyboard */,
+			);
+			path = DescriptionController;
+			sourceTree = "<group>";
+		};
+		0A7DCE26207E8F2700BD184E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				0A37BE5020770AA7004471E9 /* Info.plist */,
 				0A37BE562077E71F004471E9 /* GoogleService-Info.plist */,
 			);
-			path = InstagramScrollView;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A7DCE27207E8F7100BD184E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0A37BE4820770AA7004471E9 /* Main.storyboard */,
+				0A37BE4D20770AA7004471E9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0A7DCE29207E8FFC00BD184E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0A37BE4B20770AA7004471E9 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0A7DCE2A207E900500BD184E /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0A37BE4420770AA7004471E9 /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
 			sourceTree = "<group>";
 		};
 		213871CC87D045775CD1D30A /* Frameworks */ = {
@@ -384,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7H9Q6E8XVL;
-				INFOPLIST_FILE = InstagramScrollView/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/InstagramScrollView/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonpark.InstagramScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -400,7 +464,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7H9Q6E8XVL;
-				INFOPLIST_FILE = InstagramScrollView/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/InstagramScrollView/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonpark.InstagramScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
