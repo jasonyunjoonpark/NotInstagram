@@ -14,6 +14,7 @@ class HomeController: UIViewController {
     var ref: DatabaseReference?
     var refHandle: UInt!
     var posts = [Post]()
+    var activityIndicator = UIActivityIndicatorView()
     
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -45,9 +46,19 @@ class HomeController: UIViewController {
     }
 
     fileprivate func fetchDataAndRefreshCells() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        
         refHandle = ref?.child("posts").observe(.childAdded, with: { (snapshot) in
+    
             //Cast Firebase data as dictionary
             if let postsDictionary = snapshot.value as? [String : AnyObject] {
+                
+                //Start activity indicator animation
+                self.activityIndicator.startAnimating()
+                
                 //Init post object
                 let post = Post()
                 post.description = postsDictionary["description"] as? String
@@ -65,18 +76,26 @@ class HomeController: UIViewController {
                     DispatchQueue.main.async {
                         //Add image to post instance
                         post.image = UIImage(data: data!)
+                        
                         //Add post instance to posts array
                         self.posts.insert(post, at: 0)
+                        
                         //Sort posts array by timestamp
                         self.posts.sort{ $0.timestamp! > $1.timestamp! }
+                        
                         //Reload cells
                         self.tableView.reloadData()
+                        
+                        //End activity indicator animation
+                        self.activityIndicator.stopAnimating()
+                        
                     }
                 }).resume()
             }
         })
     }
 }
+
 
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
 
